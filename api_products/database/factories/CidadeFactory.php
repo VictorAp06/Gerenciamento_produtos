@@ -12,7 +12,7 @@ class CidadeFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = \App\Models\Cidade::class;
 
     /**
      * Define the model's default state.
