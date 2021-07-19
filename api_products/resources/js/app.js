@@ -40,9 +40,3 @@ const app = new Vue({
     el: '#app',
     router
 });
-
-const products = new Vue({
-    el: '#products',
-    router
-});
-

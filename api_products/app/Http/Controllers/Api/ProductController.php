@@ -23,8 +23,7 @@ class ProductController extends Controller
         if(!$products) {
             return response()->json(['msg' => 'Lista de produtos não encontrada'], 404);
         } else {
-            $data = [$products];
-            return $data;
+            return $products;
         }
     }
 
@@ -35,8 +34,7 @@ class ProductController extends Controller
         if(!$product) {
             return response()->json(['msg' => 'Produto não encontrado'], 404);
         } else {
-            $data = [$product];
-            return response()->json($data);
+            return $product;
         }
     }
 
@@ -49,7 +47,7 @@ class ProductController extends Controller
 
             return response()->json(['msg' => 'Produto inserido com sucesso'], 201);
         } catch (\Exception $e){
-            return response()->json(['msg' => 'Erro ao inserir produto']);
+            return response()->json(['msg' => 'Erro ao inserir produto', $e]);
         }
     }
 

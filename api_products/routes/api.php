@@ -25,7 +25,7 @@ Route::namespace('API')->name('api.')->group(function(){
         Route::get('/', [ProductController::class, 'index'])->name('index_products');
         Route::get('/{id}', [ProductController::class, 'show'])->name('single_products');
 
-        Route::post('/', [ProductController::class, 'store'])->name('insert_products');
+        Route::post('', [ProductController::class, 'store'])->name('insert_products');
 
         Route::put('/{id}', [ProductController::class, 'update'])->name('update_products');
 

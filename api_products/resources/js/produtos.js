@@ -8,19 +8,19 @@ export default {
     },
 
     salvar:(produto) => {
-        return http.post('products/saveProduto', produto)
+        return http.post('products', produto)
     },
 
-    atualizar:(produto) => {
-        return http.put('products/', produto)
+    atualizar:(id, produto) => {
+        return http.put('products/' + id, produto)
     },
 
-    deletar:(produto) => {
-        return http.delete('products/', {data: produto})
+    deletar:(id) => {
+        return http.delete('products/' + id)
     },
 
     listarProduto:(id) => {
-        return http.get('products?id=' + id)
+        return http.get('products/' + id)
     }
 
 }

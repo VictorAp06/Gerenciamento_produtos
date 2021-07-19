@@ -20,7 +20,7 @@ class CidadeController extends Controller
         if(!$cidades) {
             return response()->json(['msg' => 'Lista de cidades não encontrada'], 404);
         } else {
-            $data = [$cidades];
+            $data = $cidades;
             return response()->json($data);
         }
     }
