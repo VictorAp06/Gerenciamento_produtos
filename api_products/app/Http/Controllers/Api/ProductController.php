@@ -18,13 +18,13 @@ class ProductController extends Controller
 
     public function index(){
 
-        $products = Product::with('cidade')->paginate(15);
+        $products = Product::with('cidade')->get();
 
         if(!$products) {
-            return response()->json(['data' => ['msg' => 'Lista de produtos não encontrada']], 404);
+            return response()->json(['msg' => 'Lista de produtos não encontrada'], 404);
         } else {
-            $data = ['data' => $products];
-            return response()->json($data);
+            $data = [$products];
+            return $data;
         }
     }
 
@@ -33,9 +33,9 @@ class ProductController extends Controller
         $product = Product::with('cidade')->find($id);
 
         if(!$product) {
-            return response()->json(['data' => ['msg' => 'Produto não encontrado']], 404);
+            return response()->json(['msg' => 'Produto não encontrado'], 404);
         } else {
-            $data = ['data' => $product];
+            $data = [$product];
             return response()->json($data);
         }
     }

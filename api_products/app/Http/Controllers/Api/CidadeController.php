@@ -18,9 +18,9 @@ class CidadeController extends Controller
         $cidades = $this->cidade->all();
 
         if(!$cidades) {
-            return response()->json(['data' => ['msg' => 'Lista de cidades não encontrada']], 404);
+            return response()->json(['msg' => 'Lista de cidades não encontrada'], 404);
         } else {
-            $data = ['data' => $cidades];
+            $data = [$cidades];
             return response()->json($data);
         }
     }
