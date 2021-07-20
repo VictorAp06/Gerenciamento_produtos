@@ -19,11 +19,12 @@ class CreateTableProducts extends Migration
             $table->string('nome');
             $table->double('valor', 10, 2);
             $table->integer('estoque');
+            $table->integer('cidade_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('cidade_id')->constrained('cidades');
+            $table->foreign('cidade_id')->references('id')->on('cidades');
         });
     }
 
