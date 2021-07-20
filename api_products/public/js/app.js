@@ -1986,6 +1986,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2005,7 +2013,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         nome: '',
         valor: '',
         estoque: '',
-        cidade_id: ''
+        cidade: {
+          id: '',
+          nome: ''
+        }
       },
       produtos: [],
       cidades: []
@@ -2036,8 +2047,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       _produtos__WEBPACK_IMPORTED_MODULE_1__.default.listarProduto(id).then(function (resposta) {
-        _this2.produtos = resposta.data;
-        console.log(_this2.produtos);
+        _this2.atualizaProduto = resposta.data;
       });
     },
     listar: function listar() {
@@ -39215,9 +39225,7 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { selected: "", disabled: "" } }, [
-                _vm._v("Selecione")
-              ]),
+              _c("option", { attrs: { selected: "" } }, [_vm._v("Selecione")]),
               _vm._v(" "),
               _vm._l(_vm.cidades, function(cidade) {
                 return _c(
@@ -39268,9 +39276,51 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("td", { attrs: { colspan: "5" } }),
+              _c("td", [_vm._v(_vm._s(_vm.atualizaProduto.cod_produto))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.atualizaProduto.nome))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.atualizaProduto.valor))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.atualizaProduto.estoque))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.atualizaProduto.cidade.nome))]),
               _vm._v(" "),
               _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "waves-effect btn-small blue darken-1",
+                    on: {
+                      click: function($event) {
+                        return _vm.editar(_vm.atualizaProduto)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("create")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "waves-effect btn-small red darken-1",
+                    on: {
+                      click: function($event) {
+                        return _vm.deletar(_vm.atualizaProduto.id)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("delete_sweep")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
                 _c(
                   "button",
                   {

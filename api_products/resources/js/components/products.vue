@@ -25,7 +25,7 @@
           
           <label>Cidade</label>
           <select class="browser-default" v-model="produto.cidade_id">
-            <option selected disabled>Selecione</option>
+            <option selected>Selecione</option>
             <option v-for="cidade of cidades" :key="cidade.id" v-bind:value="cidade.id" >{{cidade.nome}}</option>
           </select>
 
@@ -54,8 +54,16 @@
           <tr>
 
             <td style="width: 100px"><input type="number" maxlength="10" placeholder="Valor" v-model="id"></td>
-            <td colspan="5"></td>
-            <td><button @click="listarProduto(id)" class="waves-effect btn-small blue darken-1"><i class="material-icons">search</i></button></td>
+            <td>{{ atualizaProduto.cod_produto }}</td>
+            <td>{{ atualizaProduto.nome }}</td>
+            <td>{{ atualizaProduto.valor }}</td>
+            <td>{{ atualizaProduto.estoque }}</td>
+            <td>{{ atualizaProduto.cidade.nome }}</td>
+            <td>
+              <button @click="editar(atualizaProduto)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
+              <button @click="deletar(atualizaProduto.id)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
+              <button @click="listarProduto(id)" class="waves-effect btn-small blue darken-1"><i class="material-icons">search</i></button>
+            </td>
 
           </tr>
 
@@ -107,7 +115,10 @@ export default {
         nome: '',
         valor: '',
         estoque: '',
-        cidade_id: ''
+        cidade: {
+          id: '',
+          nome: ''
+        }
       },
       produtos: [],
       cidades:[]
@@ -122,8 +133,7 @@ export default {
   methods:{
     listarProduto(id){
       Produto.listarProduto(id).then(resposta => {
-        this.produtos = resposta.data
-        console.log(this.produtos)
+        this.atualizaProduto = resposta.data
     })},
     listar(){
       Produto.listar().then(resposta => {
