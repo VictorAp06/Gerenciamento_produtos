@@ -29,7 +29,7 @@ class ProductFactory extends Factory
             'nome' => $this->faker->name(),
             'valor' => $this->faker->randomFloat(2, 0, 8),
             'estoque' => $this->faker->randomDigit(10),
-            'cidade_id' => '1',
+            'cidade_id' => $this->faker->numberBetween(1,4),
         ];
     }
 }
