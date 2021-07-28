@@ -17,3 +17,60 @@ use App\Http\Controllers\Api\ProductController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('admin-users')->name('admin-users/')->group(static function() {
+            Route::get('/',                                             'AdminUsersController@index')->name('index');
+            Route::get('/create',                                       'AdminUsersController@create')->name('create');
+            Route::post('/',                                            'AdminUsersController@store')->name('store');
+            Route::get('/{adminUser}/impersonal-login',                 'AdminUsersController@impersonalLogin')->name('impersonal-login');
+            Route::get('/{adminUser}/edit',                             'AdminUsersController@edit')->name('edit');
+            Route::post('/{adminUser}',                                 'AdminUsersController@update')->name('update');
+            Route::delete('/{adminUser}',                               'AdminUsersController@destroy')->name('destroy');
+            Route::get('/{adminUser}/resend-activation',                'AdminUsersController@resendActivationEmail')->name('resendActivationEmail');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::get('/profile',                                      'ProfileController@editProfile')->name('edit-profile');
+        Route::post('/profile',                                     'ProfileController@updateProfile')->name('update-profile');
+        Route::get('/password',                                     'ProfileController@editPassword')->name('edit-password');
+        Route::post('/password',                                    'ProfileController@updatePassword')->name('update-password');
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('products')->name('products/')->group(static function() {
+            Route::get('/',                                             'ProductsController@index')->name('index');
+            Route::get('/create',                                       'ProductsController@create')->name('create');
+            Route::post('/',                                            'ProductsController@store')->name('store');
+            Route::get('/{product}/edit',                               'ProductsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'ProductsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{product}',                                   'ProductsController@update')->name('update');
+            Route::delete('/{product}',                                 'ProductsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('cidades')->name('cidades/')->group(static function() {
+            Route::get('/',                                             'CidadesController@index')->name('index');
+            Route::get('/create',                                       'CidadesController@create')->name('create');
+            Route::post('/',                                            'CidadesController@store')->name('store');
+            Route::get('/{cidade}/edit',                                'CidadesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'CidadesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{cidade}',                                    'CidadesController@update')->name('update');
+            Route::delete('/{cidade}',                                  'CidadesController@destroy')->name('destroy');
+        });
+    });
+});
