@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Product\IndexProduct;
 use App\Http\Requests\Admin\Product\StoreProduct;
 use App\Http\Requests\Admin\Product\UpdateProduct;
 use App\Models\Product;
+use App\Models\Cidade;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -40,15 +41,18 @@ class ProductsController extends Controller
             ['cidade_id', 'cod_produto', 'estoque', 'id', 'nome', 'valor'],
 
             // set columns to searchIn
-            ['id', 'nome']
+            ['id', 'nome'],
+
+            function ($query) use ($request) {
+                $query->with(['cidade']);
+
+                if($request->has('cidade')){
+                    $query->whereIn('cidade_id', $request->get('cidades'));
+                }
+            }
         );
 
         if ($request->ajax()) {
-            if ($request->has('bulk')) {
-                return [
-                    'bulkItems' => $data->pluck('id')
-                ];
-            }
             return ['data' => $data];
         }
 
@@ -65,7 +69,9 @@ class ProductsController extends Controller
     {
         $this->authorize('admin.product.create');
 
-        return view('admin.product.create');
+        return view('admin.product.create', [
+            'cidades' => Cidade::all(),
+        ]);
     }
 
     /**

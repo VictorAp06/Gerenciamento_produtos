@@ -208,20 +208,17 @@ class AdminUsersController extends Controller
                 if ($request->ajax()) {
                     return ['message' => trans('brackets/admin-ui::admin.operation.succeeded')];
                 }
-
                 return redirect()->back();
             } else {
                 if ($request->ajax()) {
                     abort(409, trans('brackets/admin-ui::admin.operation.failed'));
                 }
-
                 return redirect()->back();
             }
         } else {
             if ($request->ajax()) {
                 abort(400, trans('brackets/admin-ui::admin.operation.not_allowed'));
             }
-
             return redirect()->back();
         }
     }

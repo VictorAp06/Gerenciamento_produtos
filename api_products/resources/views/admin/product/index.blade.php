@@ -49,12 +49,12 @@
                                             </label>
                                         </th>
 
-                                        <th is='sortable' :column="'cidade_id'">{{ trans('admin.product.columns.cidade_id') }}</th>
+                                        <th is='sortable' :column="'id'">{{ trans('admin.product.columns.id') }}</th>
                                         <th is='sortable' :column="'cod_produto'">{{ trans('admin.product.columns.cod_produto') }}</th>
                                         <th is='sortable' :column="'estoque'">{{ trans('admin.product.columns.estoque') }}</th>
-                                        <th is='sortable' :column="'id'">{{ trans('admin.product.columns.id') }}</th>
                                         <th is='sortable' :column="'nome'">{{ trans('admin.product.columns.nome') }}</th>
                                         <th is='sortable' :column="'valor'">{{ trans('admin.product.columns.valor') }}</th>
+                                        <th is='sortable' :column="'cidade_id'">{{ trans('admin.product.columns.cidade_id') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -78,12 +78,12 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.cidade_id }}</td>
+                                        <td>@{{ item.id }}</td>
                                         <td>@{{ item.cod_produto }}</td>
                                         <td>@{{ item.estoque }}</td>
-                                        <td>@{{ item.id }}</td>
                                         <td>@{{ item.nome }}</td>
                                         <td>@{{ item.valor }}</td>
+                                        <td>@{{ item.cidade.nome }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">
